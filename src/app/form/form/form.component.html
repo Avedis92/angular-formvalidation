@@ -1,0 +1,77 @@
+<h2>Please Sign Up with our following form</h2>
+
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>
+    <div>
+        <label for="firstname">FirstName: </label>
+        <input type="text" id="firstname" name="firstname" placeholder="Enter first name" formControlName='firstname'/>
+        <div *ngIf="!firstname?.valid && (firstname?.dirty||firstname?.touched)">
+            <div  *ngIf="firstname?.hasError('required') ">
+                First Name is required 
+            </div>
+            <div *ngIf="firstname?.hasError('minlength')">
+                First name is too short
+            </div>
+        </div>
+        
+    </div>
+
+   <div>
+        <label for="lastname">LastName: </label>
+        <input type="text" id="lastname" name="lastname" placeholder="Enter last name" formControlName="lastname"/>
+        <div *ngIf="!lastname?.valid && (lastname?.dirty ||lastname?.touched)">
+            <div  *ngIf="lastname?.hasError('required') ">
+                Last Name is required
+            </div>
+            <div *ngIf="lastname?.hasError('minlength')">
+                Last name is too short
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for="email">Email: </label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" formControlName="email" />
+        <div *ngIf="!email?.valid && (email?.dirty ||email?.touched)">
+            <div  *ngIf="email?.hasError('required')">
+                Email is required
+            </div>
+            <div *ngIf="email?.hasError('minlength')">
+                Email is too short
+            </div>
+            <div *ngIf="email?.hasError('email')">
+                Invalid email!
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="password" placeholder="Enter password" formControlName="password" />
+        <div *ngIf="!password?.valid && (password?.dirty ||password?.touched)">
+            <div  *ngIf="password?.hasError('required')">
+                Password is required
+            </div>
+            <div *ngIf="password?.hasError('minlength')">
+                Password is too short
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for="comfirmPassword">Confirm Password: </label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" formControlName="passwordConfirmation" />
+        <div *ngIf="!passwordConfirmation?.valid && (passwordConfirmation?.dirty ||passwordConfirmation?.touched)">
+            <div  *ngIf="passwordConfirmation?.hasError('required')">
+                Password Confirmation is required
+            </div>
+            <div *ngIf="passwordConfirmation?.hasError('passwordMatch')">
+                Password is not compatible
+            </div>  
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <button type="submit" [disabled]="!signUpForm.valid">Submit Form</button>
+</form>
+<div *ngIf="isSubmited">
+    <h1>HOORAAAA, YOUR FORM IS SUBMITTED!</h1>
+</div>
+
